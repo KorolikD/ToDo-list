@@ -10,10 +10,11 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     margin: 0;
+    color: #2f2f37;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
       'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
-    background: ${theme.colors.mainBackground};
+    /* background: ${theme.colors.mainBackground}; */
     min-height: 100vh;
 
     font-style: normal;
