@@ -2,7 +2,7 @@
   "name": "react-homework-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://KorolikD.github.io/ToDo-list",
+  "homepage": "https://KorolikD.github.io/ToDo-list-vanilla-redux",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.6",
     "@testing-library/jest-dom": "^5.16.3",
