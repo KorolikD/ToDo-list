@@ -1,21 +1,30 @@
-const initTasks = [
-  { id: 0, text: 'Learn HTML and CSS', completed: true },
-  { id: 1, text: 'Get good at JavaScript', completed: true },
-  { id: 2, text: 'Master React', completed: false },
-  { id: 3, text: 'Discover Redux', completed: false },
-  { id: 4, text: 'Build amazing apps', completed: false },
-];
+// const initTasks = [
+//   { id: 0, text: 'Learn HTML and CSS', completed: true },
+//   { id: 1, text: 'Get good at JavaScript', completed: true },
+//   { id: 2, text: 'Master React', completed: false },
+//   { id: 3, text: 'Discover Redux', completed: false },
+//   { id: 4, text: 'Build amazing apps', completed: false },
+// ];
+
+const dataFromLocaleStorage =
+  JSON.parse(window.localStorage.getItem('tasks')) ?? [];
+
+const initTasks = [...dataFromLocaleStorage];
 
 export const tasksReducer = (state = initTasks, action) => {
   switch (action.type) {
     case 'tasks/addTask':
-      return [...state, action.payload];
+      const addedTask = [...state, action.payload];
+      window.localStorage.setItem('tasks', JSON.stringify(addedTask));
+      return addedTask;
 
     case 'tasks/deleteTask':
-      return state.filter(task => task.id !== action.payload);
+      const deletedTask = state.filter(task => task.id !== action.payload);
+      window.localStorage.setItem('tasks', JSON.stringify(deletedTask));
+      return deletedTask;
 
     case 'tasks/toggleCompleted':
-      return state.map(task => {
+      const toggledTask = state.map(task => {
         if (task.id === action.payload) {
           return {
             ...task,
@@ -24,6 +33,8 @@ export const tasksReducer = (state = initTasks, action) => {
         }
         return task;
       });
+      window.localStorage.setItem('tasks', JSON.stringify(toggledTask));
+      return toggledTask;
 
     default:
       return state;
