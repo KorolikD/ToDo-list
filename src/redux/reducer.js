@@ -6,21 +6,16 @@
 //   { id: 4, text: 'Build amazing apps', completed: false },
 // ];
 
-const dataFromLocaleStorage =
-  JSON.parse(window.localStorage.getItem('tasks')) ?? [];
-
-const initTasks = [...dataFromLocaleStorage];
+const initTasks = [];
 
 export const tasksReducer = (state = initTasks, action) => {
   switch (action.type) {
     case 'tasks/addTask':
       const addedTask = [...state, action.payload];
-      window.localStorage.setItem('tasks', JSON.stringify(addedTask));
       return addedTask;
 
     case 'tasks/deleteTask':
       const deletedTask = state.filter(task => task.id !== action.payload);
-      window.localStorage.setItem('tasks', JSON.stringify(deletedTask));
       return deletedTask;
 
     case 'tasks/toggleCompleted':
@@ -33,7 +28,6 @@ export const tasksReducer = (state = initTasks, action) => {
         }
         return task;
       });
-      window.localStorage.setItem('tasks', JSON.stringify(toggledTask));
       return toggledTask;
 
     default:
